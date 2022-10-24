@@ -5,7 +5,7 @@
 [![Donate 15](https://img.shields.io/badge/donate-paypal-blue.svg?style=flat-square&label=donate+15)](https://www.paypal.me/ji10/15usd)
 [![Donate 25](https://img.shields.io/badge/donate-paypal-blue.svg?style=flat-square&label=donate+25)](https://www.paypal.me/ji10/25usd)
 [![Donate 50](https://img.shields.io/badge/donate-paypal-blue.svg?style=flat-square&label=donate+50)](https://www.paypal.me/ji10/50usd)
-[![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Golang+tool+to+check+internet+speed+right+from+the+terminal&url=https://github.com/adhocore/fast&hashtags=golang,terminal,spinner,spin)
+[![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Golang+spinner+library+for+the+terminal&url=https://github.com/adhocore/chin&hashtags=golang,terminal,spinner,spin)
 
 
 A GO lang command line tool to show a spinner as you wait for some long running jobs to finish.
