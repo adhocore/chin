@@ -52,4 +52,3 @@ func longTaskWg(wg *sync.WaitGroup) {
 	longTask()
 	wg.Done()
 }
-
