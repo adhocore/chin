@@ -23,12 +23,14 @@ Use in Go code with `WaitGroup`:
 
 ```go
 var wg sync.WaitGroup
-fmt.Print("\ndemo with waitgroup\n")
 
 s := chin.New().WithWait(&wg)
 go s.Start()
 
-longTaskWg(&wg)
+// invoke some long running task
+// (you can also call s.Stop() from that task)
+longTask(&wg)
+
 s.Stop()
 wg.Wait()
 ```
