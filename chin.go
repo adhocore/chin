@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-var chars = []string{"+", "\\", "|", "!", "/", "-", "x", "+", "\\", "|", "!", "/", "-", "x"}
+var chars = []string{"+", "\\", "|", "!", "/", "-", "x"}
 
 // Chin is the spinner struct
 type Chin struct {
