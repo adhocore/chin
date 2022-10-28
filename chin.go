@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-var chars = []string{"+", "\\", "|", "!", "/", "-", "x", "+", "\\", "|", "!", "/", "-", "x"}
+var chars = []string{"+", "\\", "|", "!", "/", "-", "x"}
 
 // Chin is the spinner struct
 type Chin struct {
@@ -31,7 +31,9 @@ func (s *Chin) WithWait(wg *sync.WaitGroup) *Chin {
 
 // Start starts the spinner
 func (s *Chin) Start() {
-	tput("civis")
+	if nil != tput("civis") {
+		fmt.Print("\033[?25l")
+	}
 	s.doSpin()
 }
 
@@ -41,11 +43,13 @@ func (s *Chin) Stop() {
 		defer s.wg.Done()
 	}
 	s.stop = true
-	tput("cvvis")
+	if nil != tput("cvvis") {
+		fmt.Print("\033[?25h")
+	}
 }
 
 func (s *Chin) doSpin() {
-	for !s.stop {
+	for {
 	outer:
 		select {
 		case _, ok := <-s.stch:
@@ -57,9 +61,10 @@ func (s *Chin) doSpin() {
 			for _, c := range chars {
 				if s.stop {
 					s.stch <- true
+				} else {
+					fmt.Print(c, "\010")
+					time.Sleep(50 * time.Millisecond)
 				}
-				fmt.Print(c, "\010")
-				time.Sleep(50 * time.Millisecond)
 			}
 		}
 	}
