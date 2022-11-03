@@ -19,7 +19,7 @@ type Chin struct {
 
 // New gets a new spinner
 func New() *Chin {
-	return &Chin{}
+	return &Chin{stch: make(chan bool)}
 }
 
 // WithWait attaches a wait group
@@ -31,7 +31,7 @@ func (s *Chin) WithWait(wg *sync.WaitGroup) *Chin {
 
 // Start starts the spinner
 func (s *Chin) Start() {
-	if nil != tput("civis") {
+	if err := tput("civis"); err != nil {
 		fmt.Print("\033[?25l")
 	}
 	s.doSpin()
@@ -43,7 +43,7 @@ func (s *Chin) Stop() {
 		defer s.wg.Done()
 	}
 	s.stop = true
-	if nil != tput("cvvis") {
+	if err := tput("cvvis"); err != nil {
 		fmt.Print("\033[?25h")
 	}
 }
