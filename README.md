@@ -8,7 +8,7 @@
 [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Golang+spinner+library+for+the+terminal&url=https://github.com/adhocore/chin&hashtags=golang,terminal,spinner,spin)
 
 
-A GO lang command line tool to show a spinner as you wait for some long running jobs to finish.
+A Golang command line tool to show a spinner as you wait for some long running jobs to finish.
 
 > This is a simple project but carries a tremendous value to me [❤️].
 
@@ -34,10 +34,26 @@ longTask(&wg)
 s.Stop()
 wg.Wait()
 ```
+> Refer and run working [examples](./examples/main.go) with: `go run examples/main.go`
 
-> Refer [example](./examples/main.go) for more (there is also one without waitgroup).
+### Custom Spinner
 
-> To run the examples: `go run examples/main.go`
+You can choose from provided spinner sets `chin.Default`, `chin.Arrows` and `chin.Dots`:
+```go
+s := chin.New(chin.Arrows)
+// or
+s := chin.New(chin.Dots)
+
+go s.Start()
+```
+> `chin.Default` is selected by default so you don't have to specify it.
+
+You can also define your own spinner set with delay and animation chars like so:
+```go
+// Animates 0 to 4 in a gap of 50ms:
+s := chin.New(chin.Set{50*time.Millisecond, []string{"0", "1", "2", "3", "4", "3", "2", "1"}})
+go s.Start()
+```
 
 ## Screen
 
@@ -51,3 +67,4 @@ My other golang projects you might find interesting and useful:
 - [**urlsh**](https://github.com/adhocore/urlsh) - URL shortener and bookmarker service with UI, API, Cache, Hits Counter and forwarder using postgres and redis in backend, bulma in frontend; has [web](https://urlssh.xyz) and cli client.
 - [**fast**](https://github.com/adhocore/fast) - Check your internet speed with ease and comfort right from the terminal. (It uses `adhocore/chin`.)
 - [**goic**](https://github.com/adhocore/goic) - Go Open ID Connect, is OpenID connect client library for Golang, supports the Authorization Code Flow of OpenID Connect specification.
+- [**jsonc**](https://github.com/adhocore/jsonc) - Golang JSON parser supporting comments, trailing commas and literal newlines.
