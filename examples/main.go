@@ -19,9 +19,9 @@ func main() {
 }
 
 func demo() {
-	fmt.Print("demo without waitgroup:\n")
+	fmt.Print("custom set, no waitgroup:\n")
 
-	s := chin.New()
+	s := chin.New(chin.Dots)
 	go s.Start()
 
 	longTask()
@@ -30,7 +30,7 @@ func demo() {
 
 func demoWg() {
 	var wg sync.WaitGroup
-	fmt.Print("\ndemo with waitgroup:\n")
+	fmt.Print("\ndefault set, with waitgroup:\n")
 
 	s := chin.New().WithWait(&wg)
 	go s.Start()
@@ -44,7 +44,7 @@ func longTask() {
 	n := rand.Intn(3) + 1
 	fmt.Printf("[task] sleep %ds\n", n)
 	time.Sleep(time.Duration(n) * time.Second)
-	fmt.Print("finished task\n")
+	fmt.Print("[task] finished\n")
 }
 
 func longTaskWg(wg *sync.WaitGroup) {
