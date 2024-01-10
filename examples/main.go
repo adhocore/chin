@@ -21,7 +21,7 @@ func main() {
 func demo() {
 	fmt.Print("custom set, no waitgroup:\n")
 
-	s := chin.New(chin.Dots)
+	s := chin.New()
 	go s.Start()
 
 	longTask()
